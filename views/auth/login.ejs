@@ -2,61 +2,113 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #64b5f6, #1976d2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 400px;
+            max-width: 90%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .form-label {
+            color: #444;
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 12px 18px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #64b5f6;
+        }
+
+        .btn-primary {
+            background-color: #1976d2;
+            border-color: #1976d2;
+            border-radius: 20px;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #1565c0;
+            border-color: #1565c0;
+        }
+
+        .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
+        }
+
+        .text-link {
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .text-link:hover {
+            color: #1565c0;
+        }
+    </style>
 </head>
 
-<body class="bg-zinc-100 flex items-center justify-center h-screen">
-  <div class="flex items-center justify-center h-full">
-    <form action="/log" method="POST" class="bg-white shadow-lg rounded-lg overflow-hidden max-w-3xl flex">
-      <div class="w-1/2">
-        <img src="https://source.unsplash.com/600x800/?food" alt="Food" class="w-full h-full object-cover" />
-      </div>
-      <div class="w-1/2 p-8">
-        <h2 class="text-2xl font-semibold text-zinc-700">Login</h2>
-        <p class="text-zinc-600 mt-2">
-          Lorem ipsum dolor sit amet elit. Sapien sit aut eos consectetur adipiscing.
-        </p>
-          <div class="mt-4">
-            <label for="username" class="block text-zinc-700">Username</label>
-            <input
-              type="email"
-              id="username"
-              name="username"
-              placeholder="Masukkan Email Anda"
-              class="mt-1 p-2 w-full border rounded-md"
-            />
-          </div>
-          <div class="mt-4">
-            <label for="password" class="block text-zinc-700">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Masukkan Password Anda"
-              class="mt-1 p-2 w-full border rounded-md"
-            />
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <div>
-              <input type="checkbox" id="remember" name="remember" />
-              <label for="remember" class="text-sm text-zinc-600">Remember me</label>
+<body>
+    <div class="container">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Login to Your Account!</h1>
+            </div>
+            <form action="/log" method="POST" class="user">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <hr>
+            <div class="text-center">
+                <a href="" class="text-link">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+                <a href="/register" class="text-link">Create an Account!</a>
             </div>
         </div>
-        <br>
-        <button type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-            Login
-        </button>
-        <br>
-        <br>
-        <span class="text-secondary">Create an Account!</span>
-        <a href="/register" class="text-sm text-orange-500 hover:underline">Register</a>
-      </div>
-    </form>
-  </div>
+    </div>
 </body>
 
 </html>
-
