@@ -34,41 +34,41 @@ router.post('/saveusers', async(req, res) => {
   res.redirect('/login');
 });
 
-router.post('/log', async (req, res) => {
-  let { Email, Password } = req.body;
+router.post('/log', async (req,res) => {
+  let {email, password } = req.body;
   try {
-      let Data = await Model_Users.login(Email);
-      if (Data.length > 0) {
-          let enkripsi = Data[0].Password;
-          let cek = await bcrypt.compare(Password, enkripsi);
-          if (cek) {
-              req.session.userId = Data[0].id_users;
-              // req.flash('success', 'Berhasil login');
-              // res.redirect('/users');
-              // tambahkan kondisi penegecekan level pada user yang login
-              if(Data[0].level_users == 1){
-                req.flash('success', 'Berhasil login');
-                res.redirect('/superusers');
-              }else if(Data[0].level_users == 2){
-                req.flash('success', 'Berhasil login');
-                res.redirect('/users');
-              }else {
-                res.redirect('/login1');
-              }
-          } else {
-              req.flash('error', 'Email atau Password salah');
-              res.redirect('/login');
-          }
-      } else {
-          req.flash('error', 'Akun tidak ditemukan');
+    let Data = await Model_Users.Login(email);
+    if(Data.length > 0) {
+      req.session.userId = Data[0].id_users;
+      let enkripsi = Data[0].password;
+      let cek = await bcrypt.compare(password, enkripsi);
+      if(cek) {
+        //tambahkan kondisi pengecekan level pada user yang login
+        if(Data[0].level_users == 1){
+          req.flash('success','Berhasil login');
+          res.redirect('/users');
+        }else if(Data[0].level_users == 2){
+          req.flash('success', 'Berhasil login');
+          res.redirect('/superusers');
+        }else{
           res.redirect('/login');
+        }
+      } else {
+        console.log('Email atau password salah');
+        req.flash('failure', 'Email atau password salah');
+        res.redirect('/login');
       }
-  } catch (err) {
-      console.error(err);
-      req.flash('error', 'Terjadi kesalahan saat login');
+    } else {
+      console.log('Akun tidak ditemukan');
+      req.flash('failure', 'Akun tidak ditemukan');
       res.redirect('/login');
+    }
+  } catch (err) {
+    res.redirect('/login');
+    req.flash('failure', 'Error pada fungsi');
+    console.log('error kodenya');
   }
-});
+})
 
 router.get('/logout', function(req, res) {
   req.session.destroy(function(err) {

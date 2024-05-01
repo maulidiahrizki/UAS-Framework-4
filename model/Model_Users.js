@@ -1,4 +1,4 @@
-const connection = require('../config/Database.js');
+const connection = require('../config/database.js');
 
 class Model_Users {
     static async getAll() {
@@ -25,16 +25,17 @@ class Model_Users {
         }); 
     }
     
-    static async login(email) {
+    static async Login(email) {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM users WHERE email = ?', [email] , (err, result) => {
+            let isi = connection.query(`select * from users where email = ? `, [email], function(err, result){
                 if (err) {
                     reject(err);
+                    console.log(err);
                 } else {
                     resolve(result);
                 }
-            }); 
-        }); 
+            })
+        })
     }
             
     static async getId(id) {

@@ -9,7 +9,7 @@ router.get('/', async function(req, res, next) {
     let Data = await Model_Users.getId(id);
     if (Data.length > 0) {
       //Tambahkan Kondisi pengecekan level
-      if(Data[0].level_users !=1) {
+      if(Data[0].level_users !=2) {
         res.render('/logout')
       }else {
         //diganti untuk alur nya
@@ -21,6 +21,7 @@ router.get('/', async function(req, res, next) {
       //Akhir kondisi
     }else {
       res.status(401).json({ error: 'user tidak ditemukan'});
+      console.log(Data);
     }
   }catch (error){
     res.status(501).json('Butuh Akses Login');
