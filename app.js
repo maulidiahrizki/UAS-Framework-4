@@ -3,9 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var flash = require('express-flash');
+var session = require('express-session');
+const MemoryStore = require('session-memory-store')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var superusersRouter = require('./routes/superusers');
 
 var app = express();
 
@@ -19,8 +23,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Setup session
+app.use(session({
+  cookie: {
+      maxAge: 60000000000,
+      secure: false,
+      httpOnly: true,
+      sameSite: 'strict',
+      // domain: 'domainkitananti.com',
+  },
+  store: new session.MemoryStore(),
+  saveUninitialized: true,
+  resave: false,
+  secret: 'secret'
+}));
+
+// Setup flash messages
+app.use(flash());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/superusers', superusersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
