@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 01, 2024 at 10:07 AM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 01 Bulan Mei 2024 pada 09.46
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,69 +24,61 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
-  `Id_kategori` int NOT NULL,
-  `Nama_kategori` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `Id_kategori` int(11) NOT NULL,
+  `Nama_kategori` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
-  `id_users` int NOT NULL,
-  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `no_telp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `level_users` enum('1','2') COLLATE utf8mb4_general_ci DEFAULT NULL
+  `id_users` int(11) NOT NULL,
+  `Nama` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `No_telp` varchar(255) DEFAULT NULL,
+  `Alamat` varchar(255) DEFAULT NULL,
+  `level_users` enum('1','2') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id_users`, `nama`, `email`, `password`, `no_telp`, `alamat`, `level_users`) VALUES
-(1, 'Shobri', 'shobri45@gmail.com', '$2b$10$VeLY6CG576HKJLVa4iUtAe5gaDnUpoNYhEbalRE7bUFvdWj2jpd56', '08995600397', 'Jl. kebebasan', '1'),
-(2, 'admin', 'admin@gmail.com', '$2b$10$MQ5gxTbNmUnYDMDXgP2OxeX3m4l1W8XC2ipsK82ifDOY8Fpp8i5ty', '08995622143', 'Jl. sengsara', '2');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`Id_kategori`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_users`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `Id_kategori` int NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_users` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
