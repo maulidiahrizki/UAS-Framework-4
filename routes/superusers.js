@@ -13,7 +13,7 @@ router.get('/', async function(req, res, next) {
         res.render('/logout')
       }else {
         //diganti untuk alur nya
-        res.render('users/superusers', {
+        res.render('users/super', {
           title : 'Users Home',
           email: Data[0].email
         });
