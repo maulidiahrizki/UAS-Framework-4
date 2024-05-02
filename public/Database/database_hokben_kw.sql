@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `kategori` (
-  `Id_kategori` int(11) NOT NULL,
-  `Nama_kategori` varchar(255) DEFAULT NULL
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -40,11 +40,11 @@ CREATE TABLE `kategori` (
 
 CREATE TABLE `users` (
   `id_users` int(11) NOT NULL,
-  `Nama` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Password` varchar(255) DEFAULT NULL,
-  `No_telp` varchar(255) DEFAULT NULL,
-  `Alamat` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `no_telp` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
   `level_users` enum('1','2') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
