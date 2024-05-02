@@ -60,6 +60,7 @@ router.post('/log', async (req,res) => {
       }
     } else {
       console.log('Akun tidak ditemukan');
+      console.log(req.body, email);
       req.flash('failure', 'Akun tidak ditemukan');
       res.redirect('/login');
     }
@@ -75,7 +76,7 @@ router.get('/logout', function(req, res) {
     if(err) {
       console.error(err);
     }else {
-      res.redirect('/');
+      res.redirect('/login');
     }
   });
 });

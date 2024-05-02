@@ -33,6 +33,7 @@ class Model_Users {
                     console.log(err);
                 } else {
                     resolve(result);
+                    console.log(email, result);
                 }
             })
         })
