@@ -1,7 +1,12 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+-- Host: localhost:3306
+-- Waktu pembuatan: 16 Bulan Mei 2024 pada 03.36
+-- Versi server: 8.0.30
+-- Versi PHP: 8.2.18
 -- Host: localhost:3306
 -- Generation Time: May 15, 2024 at 07:30 PM
 -- Server version: 8.0.30
@@ -30,10 +35,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `kategori` (
   `id_kategori` int NOT NULL,
   `nama_kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -43,7 +48,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
+-- Struktur dari tabel `menu`
 --
 
 CREATE TABLE `menu` (
@@ -56,7 +61,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `menu`
+-- Dumping data untuk tabel `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `komposisi_menu`, `harga_menu`, `id_kategori`, `gambar_menu`) VALUES
@@ -65,7 +70,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `komposisi_menu`, `harga_menu`, `id_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `outlet`
+-- Struktur dari tabel `outlet`
 --
 
 CREATE TABLE `outlet` (
@@ -73,13 +78,21 @@ CREATE TABLE `outlet` (
   `nama_outlet` varchar(255) NOT NULL,
   `alamat_outlet` varchar(255) NOT NULL,
   `jam_buka` varchar(255) NOT NULL,
+  `jam_tutup` varchar(100) NOT NULL,
   `status_outlet` enum('open','close') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `outlet`
+--
+
+INSERT INTO `outlet` (`id_outlet`, `nama_outlet`, `alamat_outlet`, `jam_buka`, `jam_tutup`, `status_outlet`) VALUES
+(6, ' surabaya', ' jl meranggi', ' 17:00', ' 05.00', 'close');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
+-- Struktur dari tabel `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -92,7 +105,7 @@ CREATE TABLE `pembayaran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Struktur dari tabel `service`
 --
 
 CREATE TABLE `service` (
@@ -113,11 +126,11 @@ CREATE TABLE `users` (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `no_telp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `level_users` enum('1','2') COLLATE utf8mb4_general_ci DEFAULT NULL
+  `level_users` enum('1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id_users`, `nama`, `email`, `password`, `no_telp`, `alamat`, `level_users`) VALUES
@@ -134,6 +147,33 @@ INSERT INTO `users` (`id_users`, `nama`, `email`, `password`, `no_telp`, `alamat
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indeks untuk tabel `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id_menu`),
+  ADD KEY `kategoriMenu` (`id_kategori`);
+
+--
+-- Indeks untuk tabel `outlet`
+--
+ALTER TABLE `outlet`
+  ADD PRIMARY KEY (`id_outlet`);
+
+--
+-- Indeks untuk tabel `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`),
+  ADD KEY `menuPembayaran` (`id_menu`),
+  ADD KEY `userPembayaran` (`id_users`);
+
+--
+-- Indeks untuk tabel `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id_service`);
 
 --
 -- Indexes for table `menu`
@@ -177,6 +217,30 @@ ALTER TABLE `users`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id_menu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `outlet`
+--
+ALTER TABLE `outlet`
+  MODIFY `id_outlet` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `service`
+--
+ALTER TABLE `service`
+  MODIFY `id_service` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menu`
