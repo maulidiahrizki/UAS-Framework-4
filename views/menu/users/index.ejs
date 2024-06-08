@@ -9,11 +9,76 @@
 
 </head>
     <body>
+        <style>
+                    .Menu-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+h2 {
+    color: #d91319;
+    margin-bottom: 10px;
+}
+
+.address {
+    color: #555555;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.open-hour {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.status {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.distance {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #d91319;
+}
+
+        </style>
 
         <img src="../../images/nav_login.png" alt="Gambar Atas" class="nav-image">
+<<<<<<<< HEAD:views/menu/users/index.ejs
             <button class="login-button">
                 <%= email %>
             </button>
+========
+        <button class="login-button">
+            Masuk
+        </button>
+>>>>>>>> 85f69c0fc895f4cf2f84874daf02977b35cec3bb:views/outlet/users/index.ejs
         <button class="icon-button" style="margin-right: 90px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill login-icon" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
@@ -30,7 +95,11 @@
                 <!-- Menu -->
                 <ul class="menu">
                     <li><a href="/users" class="active">Beranda</a></li>
-                    <li><a href="/menu/users/HokaRamen">Menu</a></li>
+<<<<<<<< HEAD:views/menu/users/index.ejs
+                    <li><a href="/menu/users">Menu</a></li>
+========
+                    <li><a href="#">Menu</a></li>
+>>>>>>>> 85f69c0fc895f4cf2f84874daf02977b35cec3bb:views/outlet/users/index.ejs
                     <li><a href="#">Outlet</a></li>
                     <li><a href="#">Promo</a></li>
                     <li><a href="#">Perusahaan</a></li>
@@ -54,93 +123,60 @@
             <div class="letakMenu">
                 <!-- Tiga Elemen dalam Satu Baris -->
                    <h1 class="hokbenMenu">
-                    MENU  |  メニュー
+                    outlet |  メニュー
                  </h1>
-                 <a class="hokbenSearch" href="https://www.hokben.co.id/menu/search"><i class="fa fa-search"></i>
-                    Search</a>
                 </div>
             </div>
         </section>
         
         <!-- Rekomendasi Section -->
         <section class="Menu-section">
+<<<<<<<< HEAD:views/menu/users/index.ejs
             <div class="menu-container">
-                <a href="/menu/users/HokaRamen" class="menu-button active">Hoka Ramen</a>
-                <a href="/menu/users/SetMenu" class="menu-button">Set Menu</a>
-                <a href="/menu/users/MainMenu" class="menu-button">Main Menu</a>
-                <a href="/menu/users/HokbenFriedChicken" class="menu-button">HokBen Fried Chicken</a>
-                <a href="/menu/users/FriedMenu" class="menu-button">Fried Menu</a>
-                <a href="/menu/users/Soup" class="menu-button">Soup & Sukiyaki</a>
-                <a href="/menu/users/Desserts" class="menu-button">Desserts</a>
-                <a href="/menu/users/Snacks" class="menu-button">Snacks</a>
-                <a href="/menu/users/Beverages" class="menu-button">Beverages</a>
-                <a href="/menu/users/SideDish" class="menu-button">Side Dish</a>
-                <a href="/menu/users/TakeAwayBag" class="menu-button">Take Away Bag</a>
+                <a href="/menu/users" class="menu-button active">Hoka Ramen</a>
+                <a href="#" class="menu-button">Set Menu</a>
+                <a href="#" class="menu-button">Main Menu</a>
+                <a href="#" class="menu-button">HokBen Fried Chicken</a>
+                <a href="#" class="menu-button">Fried Menu</a>
+                <a href="#" class="menu-button">Soup & Sukiyaki</a>
+                <a href="#" class="menu-button">Desserts</a>
+                <a href="#" class="menu-button">Snacks</a>
+                <a href="#" class="menu-button">Beverages</a>
+                <a href="#" class="menu-button">Side Dish</a>
+                <a href="#" class="menu-button">Take Away Bag</a>
             </div>
             <div class="Menu-cards">
+                <% for(var i=0; i < data.length; i++) { %>
                 <div class="card">
-                    <img src="../../images/rek1.png" alt="Product 1" class="card-image">
+                    <img src="/images/menu/<%= data[i].gambar_menu %>" alt="Product 1" class="card-image">
                     <div class="keterangan">
-                        <p><strong>HOKA HEMAT 1</strong></p>
-                        <p>お得なセット</p>
-                        <p>Rp. 27.500</p>
-                    </div>
-                    <div class="details">
-                        <p style="color: #d91319; text-decoration: underline;">Detail</p>
-                        <button class="pesan-button">+ Pesan</button>
+                        <p><strong><%= data[i].nama_menu %></strong></p>
+                        <p><%= data[i].harga_menu %></p>
+                        <div class="details">
+                            <p style="color: #d91319; text-decoration: underline;">Detail</p>
+                            <button class="pesan-button">+ Pesan</button>
+                        </div>
                     </div>
                 </div>                
-                <div class="card">
-                    <img src="../../images/rek2.png" alt="Product 2" class="card-image">
-                    <div class="keterangan">
-                        <p><strong>HOKA HEMAT 3</strong></p>
-                        <p>お得なセット</p>
-                        <p>Rp. 27.500</p>
-                    </div>
-                    <div class="details">
-                        <p style="color: #d91319; text-decoration: underline;">Detail</p>
-                        <button class="pesan-button">+ Pesan</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="../../images/rek3.png" alt="Product 3" class="card-image">
-                    <div class="keterangan">
-                        <p><strong>PAKET C</strong></p>
-                        <p>C セット</p>
-                        <p>Rp. 56.000</p>
-                    </div>
-                    <div class="details">
-                        <p style="color: #d91319; text-decoration: underline;">Detail</p>
-                        <button class="pesan-button">+ Pesan</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="../../images/rek4.png" alt="Product 4" class="card-image">
-                    <div class="keterangan">
-                        <p><strong>SIMPLE SET CHICKEN TERIYAKI 1</strong></p>
-                        <p>シンプルセット照り焼き１</p>
-                        <p>Rp. 41.500</p>
-                    </div>
-                    <div class="details">
-                        <p style="color: #d91319; text-decoration: underline;">Detail</p>
-                        <button class="pesan-button">+ Pesan</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="../../images/rek5.png" alt="Product 5" class="card-image">
-                    <div class="keterangan">
-                        <p><strong>HOKA HEMAT 2</strong></p>
-                        <p>お得なセット</p>
-                        <p>Rp. 27.500</p>
-                    </div>
-                    <div class="details">
-                        <p style="color: #d91319; text-decoration: underline;">Detail</p>
-                        <button class="pesan-button">+ Pesan</button>
-                    </div>
-                </div>
+                <% } %>
             </div>
+========
+            <% data.forEach(outlet => { %>
+                <div class="card">
+                    <h2><%= outlet.nama_outlet %></h2>
+                    <div class="address"><%= outlet.alamat_outlet %></div>
+                    <div class="open-hour"><%= outlet.jam_buka %> to <%= outlet.jam_tutup %></div>
+                    <div class="status"><%= outlet.status_outlet %></div>
+                    <div class="icons">
+                        <i class="fas fa-utensils icon"></i>
+                        <i class="fas fa-wifi icon"></i>
+                        <i class="fas fa-credit-card icon"></i>
+                        <i class="fas fa-clock icon"></i>
+                    </div>
+                </div>
+            <% }) %>
+>>>>>>>> 85f69c0fc895f4cf2f84874daf02977b35cec3bb:views/outlet/users/index.ejs
         </section>
-
         <!-- Informasi Section -->
         
         
